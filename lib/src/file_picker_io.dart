@@ -25,6 +25,7 @@ class FilePickerIO extends FilePicker {
   Future<FilePickerResult?> pickFiles({
     FileType type = FileType.any,
     List<String>? allowedExtensions,
+    List<String>? extraExtensions,
     String? dialogTitle,
     String? initialDirectory,
     Function(FilePickerStatus)? onFileLoading,
@@ -39,6 +40,7 @@ class FilePickerIO extends FilePicker {
         allowMultiple,
         allowCompression,
         allowedExtensions,
+        extraExtensions,
         onFileLoading,
         withData,
         withReadStream,
@@ -70,6 +72,7 @@ class FilePickerIO extends FilePicker {
     bool allowMultipleSelection,
     bool? allowCompression,
     List<String>? allowedExtensions,
+    List<String>? extraExtensions,
     Function(FilePickerStatus)? onFileLoading,
     bool? withData,
     bool? withReadStream,
@@ -93,6 +96,7 @@ class FilePickerIO extends FilePicker {
       final List<Map>? result = await _channel.invokeListMethod(type, {
         'allowMultipleSelection': allowMultipleSelection,
         'allowedExtensions': allowedExtensions,
+        'extraExtensions': extraExtensions,
         'allowCompression': allowCompression,
         'withData': withData,
       });

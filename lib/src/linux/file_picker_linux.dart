@@ -12,6 +12,7 @@ class FilePickerLinux extends FilePicker {
     String? initialDirectory,
     FileType type = FileType.any,
     List<String>? allowedExtensions,
+    List<String>? extraExtensions,
     Function(FilePickerStatus)? onFileLoading,
     bool allowCompression = true,
     bool allowMultiple = false,

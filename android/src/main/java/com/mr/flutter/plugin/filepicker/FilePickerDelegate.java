@@ -37,6 +37,7 @@ public class FilePickerDelegate implements PluginRegistry.ActivityResultListener
     private boolean isMultipleSelection = false;
     private boolean loadDataToMemory = false;
     private String type;
+    private String[] extraExtensions;
     private String[] allowedExtensions;
     private EventChannel.EventSink eventSink;
 
@@ -222,6 +223,9 @@ public class FilePickerDelegate implements PluginRegistry.ActivityResultListener
         } else {
             if (type.equals("image/*")) {
                 intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            } else if (extraExtensions != null) {
+                intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, extraExtensions);
             } else {
                 intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
